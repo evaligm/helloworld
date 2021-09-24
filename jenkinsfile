@@ -4,8 +4,6 @@ pipeline {
 
    stages {
 
-      def app
-
       stage('Get Source From GIT') { 
            steps {  git branch: 'main', credentialsId: 'admin', poll: true, changelog: true, url: 'https://github.com/evaligm/helloworld'}
           } // end stage
