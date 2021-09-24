@@ -8,9 +8,11 @@ pipeline {
       stage ('Clone repository') {checkout scm }
 
       stage('Maven Build') { 
-          steps  {  sh "mvn clean install package"  }
+          steps  {  
+	sh "mvn clean install package"  
+	nexusArtifactUploader artifacts: [[artifactId: 'helloworldid', classifier: '', file: 'target/HelloWorld-0.0.1-SNAPSHOT.jar', type: 'jar'] credentialsId: 'admin', groupId: 'helloworldgp', nexusUrl: 'localhost:8081/nexus', nexusVersion: 'nexus3', protocol: 'http'  }
 
-         steps {   nexusArtifactUploader artifacts: [[artifactId: 'helloworldid', classifier: '', file: 'target/HelloWorld-0.0.1-SNAPSHOT.jar', type: 'jar'] credentialsId: 'admin', groupId: 'helloworldgp', nexusUrl: 'localhost:8081/nexus', nexusVersion: 'nexus3', protocol: 'http'  }
+	} // end steps
           } // end stage
   
 
