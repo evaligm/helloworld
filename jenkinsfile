@@ -7,7 +7,7 @@ pipeline {
       def app
 
       stage('Get Source From GIT') { 
-           steps {  git branch: 'master', credentialsId: 'admin', poll: true, changelog: true, url: 'https://github.com/evaligm/helloworld'}
+           steps {  git branch: 'main', credentialsId: 'admin', poll: true, changelog: true, url: 'https://github.com/evaligm/helloworld'}
           } // end stage
 
       stage('Maven Build') { 
