@@ -1,17 +1,13 @@
 pipeline {
 	agent any
-	tools {
-		maven 'Maven Latest'
-		} 
+	tools {maven 'Maven Latest'} 
 
    stages {
-
       stage('Build') {
-         steps {
-	{
-            	sh "mvn clean install package"
-            }
+         steps {   sh "mvn clean install package"  }
 
-	 }
-      }
-   }
+          } // end stage
+
+      }  // end stages
+
+   }  //end pipeline
