@@ -15,7 +15,7 @@ pipeline {
       stage('Push jar file to Nexus') {
            steps  { 
                nexusArtifactUploader {
-                    nexusVersion: 'nexus3', protocol: 'http',  nexusUrl: 'localhost:8081/nexus', groupId: 'helloworldgp',  repository: 'maven-repo1', [artifacts: artifactId: 'helloworldid', classifier: '', file: 'target/HelloWorld-0.0.1-SNAPSHOT.jar', type: 'jar']
+                    nexusVersion: 'nexus3', protocol: 'http',  nexusUrl: 'localhost:8081/nexus', groupId: 'helloworldgp',  repository: 'maven-repo1', credentialsId: 'admin',  [artifactId: 'helloworldid', classifier: 'debug', file: 'target/HelloWorld-0.0.1-SNAPSHOT.jar', type: 'jar']
                } // end nexus
                
                } // end step
