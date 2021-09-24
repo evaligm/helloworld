@@ -14,7 +14,7 @@
 	<name>HelloWorld</name>
 	<description>Hello World project for Spring Boot</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>9</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
