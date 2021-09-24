@@ -3,9 +3,12 @@ pipeline {
 	tools {maven 'Maven 3.8.1'} 
 
    stages {
-      stage('Build') {
+      stage('Maven Build') {
          steps {   sh "mvn clean install package"  }
+          } // end stage
 
+      stage('Docker Image Build') {
+         steps {   app = docker.build("evaligm/helloworld")  }
           } // end stage
 
       }  // end stages
