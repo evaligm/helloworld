@@ -5,14 +5,18 @@ pipeline {
    stages {
 
       def app
-      stage ('Clone repository') {checkout scm }
+
+      stage('Get Source From GIT') { 
+           steps {  git branch: 'master', credentialsId: 'admin', poll: true, changelog: true, url: 'https://github.com/evaligm/helloworld'}
+          } // end stage
 
       stage('Maven Build') { 
-          steps  {  
-	sh "mvn clean install package"  
-	nexusArtifactUploader artifacts: [[artifactId: 'helloworldid', classifier: '', file: 'target/HelloWorld-0.0.1-SNAPSHOT.jar', type: 'jar'] credentialsId: 'admin', groupId: 'helloworldgp', nexusUrl: 'localhost:8081/nexus', nexusVersion: 'nexus3', protocol: 'http'  }
+           steps  {  sh "mvn clean install package"  }
+          } // end stage
 
-	} // end steps
+
+      stage('Push jar file to Nexus') {
+         steps {   nexusArtifactUploader artifacts: [[artifactId: 'helloworldid', classifier: '', file: 'target/HelloWorld-0.0.1-SNAPSHOT.jar', type: 'jar'] credentialsId: 'admin', groupId: 'helloworldgp', nexusUrl: 'localhost:8081/nexus', nexusVersion: 'nexus3', protocol: 'http'  }
           } // end stage
   
 
