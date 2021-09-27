@@ -37,7 +37,7 @@ pipeline {
 				protocol: 'http',  
 				nexusUrl: 'localhost:8081/nexus', 
 				groupId: 'org.springframework.boot',  
-				repository: 'maven-nexus-repo', 
+				repository: 'maven-nexus-repo/', 
 				credentialsId: 'nexus-user-credentials', 
 				version: '2.5.4'            
 
