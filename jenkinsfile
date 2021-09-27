@@ -5,7 +5,7 @@ pipeline {
     }
     tools {
         maven "Maven 3.8.1"
-        docker "docker-17.09.1-ce"
+        dockerTool "docker-17.09.1-ce"
     }
     environment {
         NEXUS_VERSION = "nexus3"
