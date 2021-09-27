@@ -56,7 +56,7 @@ pipeline {
 	    stage('Push Image') {
        	    steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'Dochub')
+                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'dockerhub-user-credentials')
                     {dockerImage.push() } 
                 }
             } // end steps
