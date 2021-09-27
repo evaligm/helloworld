@@ -55,8 +55,8 @@ pipeline {
 	    stage('Push Image') {
         	steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'evaligm'), 
-                    dockerImage.push()  
+                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'evaligm')
+                    {dockerImage.push() } 
                 }
             } // end steps
        	} // end stage
