@@ -1,5 +1,5 @@
 pipeline {
-    def docImage = true
+    //def docImage = true
     agent {
         label "master"
     }
@@ -46,7 +46,7 @@ pipeline {
         	
 	    stage('Build image') {
 		    steps {
-		        docImage = docker.build("evaligm/helloworldimg")
+		        def docImage = docker.build("evaligm/helloworldimg")
         	} // end steps
 	    } // end stage
 
