@@ -54,14 +54,29 @@ pipeline {
 	    } // end stage
 
 	    stage('Push Image') {
-        	steps {
+       	    steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'evaligm')
+                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'Dochub')
                     {dockerImage.push() } 
                 }
             } // end steps
        	} // end stage
 
+       	//stage('Push docker image to Nexus') {
+        //	steps  { 
+        //   		nexusArtifactUploader artifacts: [ [artifactId: 'HelloWorld', 
+		//		classifier: 'debug', 
+		//		file: 'helloworldimg', 
+		//		type: 'image']  ], 				
+		//		nexusVersion: 'nexus3', 
+		//		protocol: 'http',  
+		//		nexusUrl: 'b5b40343f1b6:8081/nexus', 
+		//		groupId: 'org.springframework.boot',  
+		//		repository: 'docker-nexus-repo/', 
+		//		credentialsId: 'nexus-user-credentials', 
+		//		version: '2.5.4'            
+        //    } // end step          
+        //} // end stage
 
     } // end stages
 }// end pipeline
