@@ -1,5 +1,5 @@
 pipeline {
-    def app
+    def docImage = true
     agent {
         label "master"
     }
@@ -43,11 +43,21 @@ pipeline {
 				version: '2.5.4'            
             } // end step          
         } // end stage
-        stage('Build docker image') {
-             steps {
-                app = docker.build("evaligm/helloworldimg")
-             }   // end steps
-		   } //end stage
+        	def docImage = true
+
+	    stage('Build image') {
+		    steps {
+		        docImage = docker.build("evaligm/helloworldimg")
+        	} // end steps
+	    } // end stage
+
+	    stage('Push Image') {
+        	steps {
+           		 script {
+               		 docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'evaligm') {  dockerImage.push()   }
+           	 } // end steps
+       	} // end stage
+
 
     } // end stages
 }// end pipeline
