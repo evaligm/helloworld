@@ -46,14 +46,18 @@ pipeline {
         	
 	    stage('Build image') {
 		    steps {
-		        def docImage = docker.build("evaligm/helloworldimg")
-        	} // end steps
+                script {
+                    def docImage = docker.build("evaligm/helloworldimg")
+                }
+		 	} // end steps
 	    } // end stage
 
 	    stage('Push Image') {
         	steps {
-           		docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'evaligm') 
-                dockerImage.push()   
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com/repository/docker/evaligm', 'evaligm') 
+                    dockerImage.push()  
+                }
             } // end steps
        	} // end stage
 
