@@ -63,6 +63,16 @@ pipeline {
 	        	} // end script	
             } // steps    
         } // end stage      
-      
+                
+        //stage('Pushing to Docker Repository') {
+        //  steps {  
+        //     script {
+        //        sh 'docker login --username evaligm --password Doc2hub123! registry.hub.docker.com/repository/docker/evaligm'
+        //        sh 'docker push registry.hub.docker.com/repository/docker/evaligm/helloworld:latest'
+        // } // end script
+        //} // end steps
+      //} // end stage
+
+
     }  //end stages
 } //end pipeline
