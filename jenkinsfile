@@ -56,7 +56,7 @@ pipeline {
         stage('Pushing to Docker Repository') {
           steps {  
                 sh 'docker login --username admin --password 112233 b5b40343f1b6:8085'
-                sh 'docker push b5b40343f1b6:8085/helloworld:latest'
+                //sh 'docker push b5b40343f1b6:8085/helloworld:latest'
             } // end steps
         } // end stage
           
