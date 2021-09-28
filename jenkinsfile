@@ -57,7 +57,7 @@ pipeline {
         stage('Push image')  { 
             steps {
                 script {
-    		        docker.withRegistry('https://registry.hub.docker.com', 'Dochub') {
+    		        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-user-credentials') {
         		    docImage.push("${env.BUILD_NUMBER}")
 		            docImage.push("latest")
                     }
