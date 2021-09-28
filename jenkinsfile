@@ -45,13 +45,24 @@ pipeline {
             } // end step          
         } // end stage
         	
-	    stage('Build image') {
+	    stage('Build docker image') {
 		    steps {
                 script {
                     def docImage = docker.build("evaligm/helloworldimg")
                 }
 		 	} // end steps
 	    } // end stage
+
+
+        // Uploading Docker images into Nexus Registry
+        stage('Push docker image to Nexus') {
+            steps{  
+                script {
+                    docker.withRegistry( 'http://b5b40343f1b6:8085/registry, 'nexus-user-credentials' ) { dockerImage.push('evaligm/helloworldimg') }
+                } // end script 
+            } // end steps
+	    } // end stage
+
 
 	    //stage('Push Image') {
        	//    steps {
@@ -62,21 +73,21 @@ pipeline {
         //    } // end steps
        	//} // end stage
 
-       	stage('Push docker image to Nexus') {
-        	steps  { 
-           		nexusArtifactUploader artifacts: [ [artifactId: 'HelloWorld', 
-				classifier: 'debug', 
-				file: 'evaligm/helloworldimg:latest', 
-				type: 'image']  ], 				
-				nexusVersion: 'nexus3', 
-				protocol: 'http',  
-				nexusUrl: 'b5b40343f1b6:8081/nexus', 
-				groupId: 'org.springframework.boot',  
-				repository: 'docker-nexus-repo/', 
-				credentialsId: 'nexus-user-credentials', 
-				version: '2.5.4'            
-            } // end step          
-        } // end stage
+       	//stage('Push docker image to Nexus') {
+        //	steps  { 
+        //  		nexusArtifactUploader artifacts: [ [artifactId: 'HelloWorld', 
+		//		classifier: 'debug', 
+		//		file: 'evaligm/helloworldimg:latest', 
+		//		type: 'image']  ], 				
+		//		nexusVersion: 'nexus3', 
+		//		protocol: 'http',  
+		//		nexusUrl: 'b5b40343f1b6:8081/nexus', 
+		//		groupId: 'org.springframework.boot',  
+		//		repository: 'docker-nexus-repo/', 
+		//		credentialsId: 'nexus-user-credentials', 
+		//		version: '2.5.4'            
+        //  } // end step          
+        //} // end stage
 
-    } // end stages
-}// end pipeline
+    }  end stages
+} end pipeline
