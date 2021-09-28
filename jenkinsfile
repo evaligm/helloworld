@@ -53,16 +53,24 @@ pipeline {
 		 	} // end steps
 	    } // end stage
 
+
+        stage('Push image')  { 
+    		docker.withRegistry('https://registry.hub.docker.com', 'Dochub') {
+        		docImage.push("${env.BUILD_NUMBER}")
+		        docImage.push("latest")
+	        	}	
+		       
+
         // Uploading Docker images into Nexus Registry
-        stage('Uploading to Nexus') {
-            steps{  
-                script {
-                    docker.withRegistry( 'http://b5b40343f1b6:8085/registry, 'nexus-user-credentials' ) {
-                    dockerImage.push('evaligm/helloworldimg:latest')
-          }
-        }  // end script
-      }  // end steps
-    } // end stage
+        //stage('Uploading to Nexus') {
+        //    steps{  
+        //        script {
+        //            docker.withRegistry( 'http://b5b40343f1b6:8085/registry, 'nexus-user-credentials' ) {
+        //            dockerImage.push('evaligm/helloworldimg:latest')
+        //  }
+        //}  // end script
+      //}  // end steps
+    //} // end stage
 	          
     }  //end stages
 } //end pipeline
