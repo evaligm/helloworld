@@ -55,10 +55,14 @@ pipeline {
 
 
         stage('Push image')  { 
-    		docker.withRegistry('https://registry.hub.docker.com', 'Dochub') {
-        		docImage.push("${env.BUILD_NUMBER}")
-		        docImage.push("latest")
-	        	}	
+            steps {
+                script 
+    		        docker.withRegistry('https://registry.hub.docker.com', 'Dochub') {
+        		    docImage.push("${env.BUILD_NUMBER}")
+		            docImage.push("latest")
+                    }
+	        	} // end script	
+            } // steps    
         } // end stage      
 
         // Uploading Docker images into Nexus Registry
