@@ -54,24 +54,24 @@ pipeline {
 	    } // end stage
 
 
-        //stage('Push image')  { 
-        //    steps {
-        //        script {
-    	//	        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-user-credentials') {
-        //		    docImage.push('evaligm/helloworldimg:latest')
-        //            }
-	    //    	} // end script	
-        //    } // steps    
-        //} // end stage      
+        stage('Push image')  { 
+            steps {
+                script {
+    		        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-user-credentials') {
+        		    docImage.push('helloworldimg:latest')
+                    }
+	        	} // end script	
+            } // steps    
+        } // end stage      
                 
-        stage('Pushing to Docker Repository') {
-          steps{  
-             script {
-                sh 'docker login --username evaligm --password Doc2hub123! registry.hub.docker.com/repository/docker/evaligm'
-                sh 'docker push registry.hub.docker.com/repository/docker/evaligm/helloworld:latest'
-         } // end script
-        } // end steps
-      } // end stage
+        //stage('Pushing to Docker Repository') {
+        //  steps {  
+        //     script {
+        //        sh 'docker login --username evaligm --password Doc2hub123! registry.hub.docker.com/repository/docker/evaligm'
+        //        sh 'docker push registry.hub.docker.com/repository/docker/evaligm/helloworld:latest'
+        // } // end script
+        //} // end steps
+      //} // end stage
 
 
     }  //end stages
