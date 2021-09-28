@@ -58,8 +58,7 @@ pipeline {
             steps {
                 script {
     		        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-user-credentials') {
-        		    docImage.push("${env.BUILD_NUMBER}")
-		            docImage.push("latest")
+        		    docImage.push('evaligm/helloworldimg:latest')
                     }
 	        	} // end script	
             } // steps    
