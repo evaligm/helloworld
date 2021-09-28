@@ -56,7 +56,7 @@ pipeline {
         stage("Push to Nexus") {
             steps {
                 script {
-                    sh "mvn package -DskipTests=true"
+                    sh "docker login --username admin --password 112233 b5b40343f1b6:8085"
                 }  // end script
             } // end steps
         }  // end stage
