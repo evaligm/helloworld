@@ -54,10 +54,11 @@ pipeline {
 	    } // end stage
 
         stage('Pushing to Docker Repository') {
-          steps {  
-                sh 'docker login --username admin --password 112233 b5b40343f1b6:8085'
-                //sh 'docker push b5b40343f1b6:8085/helloworld:latest'
-            } // end steps
+            steps {  
+                script {
+                    sh "docker login --username admin --password 112233 b5b40343f1b6:8085"
+                }  // end script
+            } // end steps
         } // end stage
           
     }  //end stages
