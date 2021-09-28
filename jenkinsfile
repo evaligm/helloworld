@@ -53,16 +53,25 @@ pipeline {
 		 	} // end steps
 	    } // end stage
 
+        stage('Pushing to Docker Repository') {
+          steps {  
+             script {
+                sh 'docker login --username admin --password 112233 b5b40343f1b6:8085'
+                sh 'docker push b5b40343f1b6:8085/helloworld:latest'
+             } // end script
+          } // end steps
+        } // end stage
 
-        stage('Push image')  { 
-            steps {
-                script {
-    		        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-user-credentials') {
-        		    docImage.push('helloworldimg:latest')
-                    }
-	        	} // end script	
-            } // steps    
-        } // end stage      
+
+        //stage('Push image')  { 
+        //    steps {
+        //        script {
+    	//	        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-user-credentials') {
+        //		    docImage.push('helloworldimg:latest')
+        //            }
+	    //    	} // end script	
+        //    } // steps    
+        //} // end stage      
       
     }  //end stages
 } //end pipeline
