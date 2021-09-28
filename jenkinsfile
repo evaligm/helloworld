@@ -59,7 +59,7 @@ pipeline {
         		docImage.push("${env.BUILD_NUMBER}")
 		        docImage.push("latest")
 	        	}	
-		       
+        } // end stage      
 
         // Uploading Docker images into Nexus Registry
         //stage('Uploading to Nexus') {
