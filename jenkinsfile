@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     sh "docker login --username admin --password 112233 172.27.139.59:8085"
-                    sh 'docker push 172.27.139.59:8085/helloworld:latest'
+                    sh 'docker push http://172.27.139.59:8085/helloworld:latest'
                 }  // end script
             } // end steps
         }  // end stage
