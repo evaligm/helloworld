@@ -55,8 +55,9 @@ pipeline {
 
         stage("Push to Nexus") {
             steps {
-                script {
-                    sh "docker login --username admin --password 112233 localhost:8085"
+                script {                    
+    		        sh "docker login --username admin --password 112233 localhost:8085"
+                    sh "docker tag evaligm/helloworldimg:latest localhost:8085/helloworld:latest"
                     sh "docker push localhost:8085/helloworld:latest"
                 }  // end script
             } // end steps
