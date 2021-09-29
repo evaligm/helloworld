@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     sh "docker login --username admin --password 112233 localhost:8085"
-                    sh 'docker push localhost:8085/helloworld:latest'
+                    sh "docker push http://localhost:8085/helloworld:latest"
                 }  // end script
             } // end steps
         }  // end stage
