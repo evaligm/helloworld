@@ -1,5 +1,4 @@
 pipeline {
-    //def docImage = true
     agent {
         label "master"
     }
@@ -62,14 +61,14 @@ pipeline {
                 }  // end script
             } // end steps
         }  // end stage
-          
-        stage("Docker Run") {
-     		steps{
-      		   script {
-               		 sh "docker run -d -p 80:80 --rm --name helloworldcon localhost:8085/helloworld2:latest"
-         	  	  }  // end script
-       	    } // end steps
-       	}  // end stage
+
+        stage("docker run") {
+            steps {
+                script {                    
+    		        sh "docker run -d -p 80:80 --rm --name helloworldcon localhost:8085/helloworld2:latest"
+                }  // end script
+            } // end steps
+        }  // end stage
 
     }  //end stages
 } //end pipeline
