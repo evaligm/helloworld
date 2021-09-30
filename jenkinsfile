@@ -65,7 +65,7 @@ pipeline {
         stage("docker run") {
             steps {
                 script {                    
-    		        sh "docker run -d -p 80:80 --rm --name helloworldcon1 localhost:8085/helloworld:latest"
+    		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon9 localhost:8085/helloworld:latest"
                 }  // end script
             } // end steps
         }  // end stage
