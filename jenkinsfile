@@ -57,7 +57,7 @@ pipeline {
         stage("docker run ") {
             steps {
                 script {                    
-    		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon8 evaligm/helloworld:latest"
+    		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon8 evaligm/helloworldimg:latest"
                 }  // end script
             } // end steps
         }  // end stage
@@ -67,7 +67,7 @@ pipeline {
             steps {
                 script {                    
     		        sh "docker login --username admin --password 112233 localhost:8085"
-                    sh "docker tag evaligm/helloworldimg:latest localhost:8085/helloworld:latest"
+                    sh "docker tag evaligm/helloworldimg:latest localhost:8085/helloworldimg:latest"
                     sh "docker push localhost:8085/helloworld:latest"
                 }  // end script
             } // end steps
@@ -76,7 +76,7 @@ pipeline {
         stage("docker run pull image from Nexus") {
             steps {
                 script {                    
-    		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon9 localhost:8085/helloworld:latest"
+    		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon9 localhost:8085/helloworldimg:latest"
                 }  // end script
             } // end steps
         }  // end stage
