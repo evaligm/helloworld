@@ -53,6 +53,16 @@ pipeline {
 		 	} // end steps
 	    } // end stage
 
+
+        stage("docker run ") {
+            steps {
+                script {                    
+    		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon8 evaligm/helloworld:latest"
+                }  // end script
+            } // end steps
+        }  // end stage
+
+
         stage("Push to Nexus") {
             steps {
                 script {                    
@@ -63,7 +73,7 @@ pipeline {
             } // end steps
         }  // end stage
 
-        stage("docker run") {
+        stage("docker run pull image from Nexus") {
             steps {
                 script {                    
     		        sh "docker run -d -p 8080:8080 --rm --name helloworldcon9 localhost:8085/helloworld:latest"
